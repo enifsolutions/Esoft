@@ -1,0 +1,60 @@
+﻿@model BankApplication.Models.User.UserViewModel
+
+@{
+    Layout = "_main";
+    ViewData["Title"] = Model.userid == 0 ? "Create User" : "Edir User";
+}
+
+<h1>Edit</h1>
+
+<h4>UserViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="userid" />
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="createduser" class="control-label"></label>
+                <input asp-for="createduser" class="form-control" />
+                <span asp-validation-for="createduser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action" class="control-label"></label>
+                <input asp-for="action" class="form-control" />
+                <span asp-validation-for="action" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@if (TempData["NotificationMessage"] != null)
+{
+    <script>
+        // Call the JavaScript function to show the notification
+        showNotification("@TempData["NotificationMessage"]", "success");
+    </script>
+}
